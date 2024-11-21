@@ -5,13 +5,20 @@ import { render, screen } from "@testing-library/react";
 import App from "@/app/App";
 
 // Tests
-describe("Renders main page correctly", async () => {
-  it("Should render the page correctly with the text Hello", async () => {
+describe("Renders header correctly", async () => {
+  it('renders correctly in logged out state', () => {
     // Setup
-    render(<App />);
-    const h1 = await screen.queryByText("Hello");
+     render(<App />);
 
-    // Expectations
-    expect(h1).toBeInTheDocument();
+    // Check if the logo text is present
+     expect(screen.getByText('IlmConnect')).toBeInTheDocument();
+    
+    // Check if the login button is present when not logged in
+    expect(screen.getByText('Login')).toBeInTheDocument();
+    
+    // Check if the sign up button is present when not logged in
+    expect(screen.getByText('Sign up')).toBeInTheDocument();
   });
 });
+
+

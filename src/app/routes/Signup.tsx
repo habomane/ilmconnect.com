@@ -1,6 +1,7 @@
 import { Text, TextType } from "@/components/typography/Text"
 import { Link } from "react-router-dom"
 
+
 export const Signup: React.FC = () => {
     return (
         <main className="flex mt-5">
