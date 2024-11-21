@@ -6,11 +6,15 @@ import { Header } from "@/components/layout/Header";
 
 export const AppLayout: React.FC = () => {
   return (
-      <div className="grid h-screen grid-rows-[auto_1fr_auto] relative font-base">
+      <div className="flex flex-col h-screen">
         <Header/>
-        <Navigation/>
-        <Outlet/>
-        <Footer />
+        <div className="flex flex-grow">
+          <Navigation/>
+          <div className="flex-grow p-4">
+            <Outlet/>
+          </div>
+        </div>
+        <Footer/>
       </div>
   );
 };
