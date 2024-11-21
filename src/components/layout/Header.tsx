@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export const Header: React.FC = () => {
     const [type] = useState(TextType.headerOneBlack);
 
-    // temporary parameter for testing until logged in state becomes available
+    // temporary parameter until log in features is not implemented
     let isLoggedIn = 0; 
 
     return (
@@ -18,6 +18,7 @@ export const Header: React.FC = () => {
         <div className="float-right">
             {isLoggedIn ? 
                 (   
+                    // TO DO: handle log out when this button is clicked onClick=...
                     <button type="button" className="rounded-full bg-customPurple px-8 py-2.5" > 
                         <Text type={TextType.headerThreeWhite}>Log out</Text> 
                     </button>
