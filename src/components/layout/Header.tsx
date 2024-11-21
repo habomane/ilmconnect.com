@@ -25,13 +25,13 @@ export const Header: React.FC = () => {
                 ):(
                     <>
                         <Link to="/login">
-                        <button type="button" className="rounded-full bg-customPurple px-8 py-2.5"> 
+                        <button type="button" className="rounded-full bg-customPurple px-7 py-2.5 mr-1 ml-1"> 
                             <Text type={TextType.headerThreeWhite}>Login</Text>
                         </button>
                         </Link>
 
                         <Link to="/signup">
-                        <button type="button" className="rounded-full bg-white border border-black px-8 py-2.5"> 
+                        <button type="button" className="rounded-full bg-white border border-black px-7 py-2.5 mr-0 ml-1"> 
                             <Text type={TextType.headerThreeBlack}>Sign up</Text>
                         </button>
                         </Link>

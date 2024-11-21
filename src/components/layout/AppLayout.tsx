@@ -8,6 +8,7 @@ export const AppLayout: React.FC = () => {
   return (
       <div className="grid h-screen grid-rows-[auto_1fr_auto] relative font-base">
         <Header/>
+        <Navigation/>
         <Outlet/>
         <Footer />
       </div>
