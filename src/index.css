@@ -6,7 +6,6 @@ body {
     font-family: "Inter", sans-serif;
 }
 
-
 @media (max-width: 900px) {
     .headerOne {
         font-size: 32px;
