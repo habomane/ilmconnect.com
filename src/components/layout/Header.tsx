@@ -14,8 +14,8 @@ export const Header: React.FC = () => {
         <div className="float-left">
             <Text type={type}>IlmConnect</Text>
         </div>
-
         <div className="float-right">
+
             {isLoggedIn ? 
                 (   
                     // TO DO: handle log out when this button is clicked onClick=...
