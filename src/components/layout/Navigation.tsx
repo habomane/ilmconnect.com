@@ -5,9 +5,10 @@ export const Navigation = () => {
   const location = useLocation(); 
   const currentPath = location.pathname; 
   const activeClass = 'text-customPurple';
-  const linkClass = 'block m-10 px-4 py-2 rounded';
+  const linkClass = 'block m-10 px-4 py-2 rounded'; 
 
   return (
+
     <nav className="flex flex-col h-full w-64 justify-between items-center bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 shadow">
       <Link to="/mentors" className={`${linkClass} ${currentPath === '/mentors' ? activeClass : 'text-black'}`}> 
         Mentors
