@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export const SearchBar: React.FC = () => {
-    const [query,setQuery]=useState("")
+    const [,setQuery]=useState("")
 
     const handleChange = (value: string) => {
         setQuery(value);

@@ -1,44 +1,51 @@
-import { Text, TextType } from "@/components/typography/Text";   
-import { useState } from "react"
-import { Link } from "react-router-dom";
+import { Text, TextType } from "@/components/typography/Text";
+import { LinkButton } from "../interactive/Link";
+import { ButtonColors } from "../interactive/Button";
+import { useState, useEffect } from "react";
+import { getUserKeyFromStorage, deleteExistingKey } from "@/util";
+import { useNavigate } from "react-router-dom";
 
 export const Header: React.FC = () => {
-    const [type] = useState(TextType.headerOneBlack);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+  const resetAccount = () => {
+    deleteExistingKey();
+    navigate("/");
+    window.location.reload();
 
-    // temporary parameter until log in features is not implemented
-    let isLoggedIn = 0; 
+  }
+  useEffect(() => {
+    const userKey = getUserKeyFromStorage();
+    if (userKey !== "null") {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
-    return (
-    <div className="flow-root justify-center bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 shadow">
+  return (
+    <div className="flex items-center justify-between bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800 shadow">
+      <Text type={TextType.headerOneBlack}>IlmConnect</Text>
+      <div className="">
+        {isLoggedIn ? (
+          // TO DO: handle log out when this button is clicked onClick=...
+          <LinkButton to="/" color={ButtonColors.purple} callBack={resetAccount}>
+            <Text type={TextType.bodyWhite}>Log out</Text>
+          </LinkButton>
+        ) : (
+          <div className="flex flex-col items-center gap-x-3 md:flex-row">
+            <LinkButton to="/login" color={ButtonColors.purple}>
+              <Text type={TextType.bodyWhite} tailwindClass="font-bold">
+                Login
+              </Text>
+            </LinkButton>
 
-        <div className="float-left">
-            <Text type={type}>IlmConnect</Text>
-        </div>
-        <div className="float-right">
-
-            {isLoggedIn ? 
-                (   
-                    // TO DO: handle log out when this button is clicked onClick=...
-                    <button type="button" className="rounded-full bg-customPurple px-8 py-2.5" > 
-                        <Text type={TextType.headerThreeWhite}>Log out</Text> 
-                    </button>
-                ):(
-                    <>
-                        <Link to="/login">
-                        <button type="button" className="rounded-full bg-customPurple px-7 py-2.5 mr-1 ml-1"> 
-                            <Text type={TextType.headerThreeWhite}>Login</Text>
-                        </button>
-                        </Link>
-
-                        <Link to="/signup">
-                        <button type="button" className="rounded-full bg-white border border-black px-7 py-2.5 mr-0 ml-1"> 
-                            <Text type={TextType.headerThreeBlack}>Sign up</Text>
-                        </button>
-                        </Link>
-                    </>
-                )
-            }
-        </div>
+            <LinkButton to="/signup" color={ButtonColors.white}>
+              <Text type={TextType.bodyBlack} tailwindClass="font-bold">
+                Sign up
+              </Text>
+            </LinkButton>
+          </div>
+        )}
+      </div>
     </div>
-    )
-}
+  );
+};

@@ -5,13 +5,15 @@ import {AppLayout} from "@/components/layout/AppLayout";
 import Home from "@/app/routes/Home";
 import { Login } from "@/app/routes/Login";
 import { Signup } from "@/app/routes/Signup";
+import { Profile } from "@/app/routes/Profile";
 
 const routes = createBrowserRouter([
   {
     element: <AppLayout />,
     children: [{ path: "/", element: <Home /> },
       {path: "/login", element: <Login />},
-      {path: "/signup", element: <Signup />}
+      {path: "/signup", element: <Signup />},
+      { path: "/profile", element: <Profile />}
     ],
   },
 ]);
