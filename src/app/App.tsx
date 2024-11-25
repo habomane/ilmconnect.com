@@ -6,13 +6,16 @@ import Home from "@/app/routes/Home";
 import { Login } from "@/app/routes/Login";
 import { Signup } from "@/app/routes/Signup";
 import { Profile } from "@/app/routes/Profile";
+import { Mentors } from "@/app/routes/Mentors";
 
 const routes = createBrowserRouter([
   {
     element: <AppLayout />,
     children: [{ path: "/", element: <Home /> },
       {path: "/login", element: <Login />},
-      {path: "/signup", element: <Signup />}
+      {path: "/signup", element: <Signup />},
+      {path: "/profile", element: <Profile />},
+      {path: "/mentors", element: <Mentors />}
     ],
   },
 ]);
