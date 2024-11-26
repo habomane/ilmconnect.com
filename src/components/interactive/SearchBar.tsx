@@ -10,11 +10,9 @@ export const SearchBar: React.FC = () => {
     }
 
     return ( 
-            <div className="search_bar_input">
-                <input 
+                <input className="w-full h-10 border-2 border-slate-300 rounded border p-2"
                     placeholder="Type to search mentors"
                     type="text"
                     onChange={e=>handleChange(e.target.value)}
-                />     
-            </div>)
+                /> )   
 }

@@ -7,7 +7,7 @@ export const Mentors: React.FC = () => {
     const photoURL = 'https://media.istockphoto.com/id/1424248097/vector/avatar-of-a-black-young-woman-in-a-hijab-smiling-beautiful-muslim-girl-portrait-of-a-happy.jpg?s=1024x1024&w=is&k=20&c=_IFgTuEBNUHaJ4zsn3H1nB9l-ZdQkgmefB2WbRKa8SA=';
 
 
-    //mock data
+    //mock data - fetch API when endpoint available
     const fetchMentorsList = () => { 
         return [ 
             { 
@@ -144,8 +144,8 @@ export const Mentors: React.FC = () => {
 
     return (
         <main>
-            <div className="flex flex-col p-4 gap-4 justify-center">
-                <div className="" ><SearchBar /></div>
+            <div className="flex flex-col p-4 gap-4 items-center">
+                <div className="w-full md:w-2/3" ><SearchBar /></div>
                 <div className="flex flex-wrap gap-4 justify-center">
                 {mentorsList.map((mentor: { id: Key | null | undefined; DisplayName: string; Profession: string; ProfilePicture: string; }) => 
                     ( <UserCard 
@@ -154,13 +154,7 @@ export const Mentors: React.FC = () => {
                         profession={mentor.Profession} 
                         profilePicture={mentor.ProfilePicture} /> 
                     ))}
-                    {/* <UserCard displayName={mentorsList[0].DisplayName} profession={mentorsList[0].Profession} profilePicture={mentorsList[0].ProfilePicture}/> 
-                    <UserCard displayName={mentorsList[1].DisplayName} profession={mentorsList[1].Profession} profilePicture={mentorsList[1].ProfilePicture}/>  
-                    <UserCard displayName={mentorsList[2].DisplayName} profession={mentorsList[2].Profession} profilePicture={mentorsList[2].ProfilePicture}/>  
-                    <UserCard displayName={mentorsList[0].DisplayName} profession={mentorsList[0].Profession} profilePicture={mentorsList[0].ProfilePicture}/> 
-                    <UserCard displayName={mentorsList[1].DisplayName} profession={mentorsList[1].Profession} profilePicture={mentorsList[1].ProfilePicture}/>  
-                    <UserCard displayName={mentorsList[2].DisplayName} profession={mentorsList[2].Profession} profilePicture={mentorsList[2].ProfilePicture}/>    */}
-                </div> 
+                   </div> 
             </div>
         </main>
     )

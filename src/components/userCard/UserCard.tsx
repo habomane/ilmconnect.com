@@ -15,7 +15,7 @@ export const UserCard: React.FC<UserCardProps> = (props) => {
             <div className="p-4"> 
                 <Text type={TextType.headerTwoBlack}>{props.displayName}</Text>
                 <Text type={TextType.headerThreeBlack}>{props.profession}</Text>
-                <Link to="/" className="text-purple-500 hover:underline">See profile</Link> 
+                <Link to="/" className="text-customPurple hover:underline">See profile</Link> 
                 </div> 
         </div>)
 }
