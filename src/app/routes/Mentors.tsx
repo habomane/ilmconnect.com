@@ -1,9 +1,9 @@
 import { UserCard } from "@/components/userCard/UserCard"
 import { SearchBar } from "@/components/interactive/SearchBar"
-import { Key } from "react";
+import { Key, useState } from "react";
 
 export const Mentors: React.FC = () => {
-
+    const [query,setQuery]=useState("")
     const photoURL = 'https://media.istockphoto.com/id/1424248097/vector/avatar-of-a-black-young-woman-in-a-hijab-smiling-beautiful-muslim-girl-portrait-of-a-happy.jpg?s=1024x1024&w=is&k=20&c=_IFgTuEBNUHaJ4zsn3H1nB9l-ZdQkgmefB2WbRKa8SA=';
 
 
@@ -145,9 +145,11 @@ export const Mentors: React.FC = () => {
     return (
         <main>
             <div className="flex flex-col p-4 gap-4 items-center">
-                <div className="w-full md:w-2/3" ><SearchBar /></div>
+                <div className="w-full md:w-2/3" ><SearchBar setQuery={setQuery}/></div>
                 <div className="flex flex-wrap gap-4 justify-center">
-                {mentorsList.map((mentor: { id: Key | null | undefined; DisplayName: string; Profession: string; ProfilePicture: string; }) => 
+                {mentorsList
+                    .filter((mentorsList) => mentorsList.Profession.toLocaleLowerCase().includes(query.toLowerCase()))
+                        .map((mentor: { id: Key | null | undefined; DisplayName: string; Profession: string; ProfilePicture: string; }) => 
                     ( <UserCard 
                         key={mentor.id} 
                         displayName={mentor.DisplayName} 
