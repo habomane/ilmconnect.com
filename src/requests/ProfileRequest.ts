@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080/profile/";
+const API_URL = "https://ilmconnect-ilmapi.onrender.com/profile/";
 
 export enum ProfileEndpoints  {
     getProfileByUserKey= API_URL + "user/",

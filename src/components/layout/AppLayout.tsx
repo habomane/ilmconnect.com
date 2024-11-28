@@ -17,7 +17,7 @@ export const AppLayout: React.FC = () => {
         <Header/>
         {
           isLoggedIn ? (
-            <div className="flex flex-grow">
+            <div className="flex flex-col-reverse md:flex-row md:flex-grow">
             <Navigation/>
             <div className="flex-grow ">
             <Outlet/>

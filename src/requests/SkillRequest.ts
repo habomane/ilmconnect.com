@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080/skill/";
+const API_URL = "https://ilmconnect-ilmapi.onrender.com/skill/";
 
 export enum SkillEndpoints  {
     postSkill = API_URL + "create",

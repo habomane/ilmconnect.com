@@ -155,7 +155,7 @@ export const CreateProfile: React.FC = () => {
   },[])
 
   return (
-    <main>
+    <main className="px-10 md:px-0">
       <div className="flex flex-col items-center mt-6">
         <Text type={TextType.headerTwoBlack}>Profile</Text>
         <div className="my-3">
@@ -223,7 +223,7 @@ export const CreateProfile: React.FC = () => {
           <div className="flex flex-col gap-y-5 w-full justify-center items-center">
             {skills?.map((item, key) => {
               return (
-                <div key={key}  className="flex gap-x-10 items-center justify-between w-1/3 ">
+                <div key={key}  className="flex gap-x-10 items-center justify-between md:w-1/3 ">
               <Skill skill={item} />
               <Button callBack={() => deleteSkill(item)} color={ButtonColors.red}>
             <Text type={TextType.bodyWhite}>

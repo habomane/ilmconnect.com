@@ -1,6 +1,6 @@
-import { useState } from "react";
 
 interface SearchBarProps {
+    value: any;
     setQuery : (query:string)=>void;
   }
 
@@ -14,8 +14,9 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
     }
 
     return ( 
-                <input className="w-full h-10 border-2 border-slate-300 rounded border p-2"
+                <input className="w-full h-10 border-2 border-slate-300 rounded p-2"
                     placeholder="Type to search"
+                    value={props.value}
                     type="text"
                     onChange={e=>handleChange(e.target.value)}
                 /> )   
