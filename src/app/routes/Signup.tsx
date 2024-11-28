@@ -74,18 +74,20 @@ export const Signup: React.FC = () => {
         ): (  
             <div>
             <div className="flex flex-col gap-y-10 mb-8">
-            <InputText type="text" label="First Name" callBack={setFirstName} />
-            <InputText type="text" label="Last Name" callBack={setLastName} />
-            <InputText type="text" label="Email" callBack={setEmail} />
-            <InputText type="password" label="Password" callBack={setPassword} />
+            <InputText type="text" label="First Name" callBack={setFirstName} value={firstName}/>
+            <InputText type="text" label="Last Name" callBack={setLastName} value={lastName}/>
+            <InputText type="text" label="Email" callBack={setEmail} value={email}/>
+            <InputText type="password" label="Password" callBack={setPassword} value={password}/>
             <InputDropdown
               label="Country"
               options={countryList}
               callBack={setCountry}
+              value={country}
             />
 
-            <InputText type="text" label="State/Province" callBack={setProvince} />
+            <InputText type="text" label="State/Province" callBack={setProvince} value={province}/>
             <InputDropdown
+            value={gmt}
               label="GMT"
               options={gmtOptions}
               callBack={setGMT}

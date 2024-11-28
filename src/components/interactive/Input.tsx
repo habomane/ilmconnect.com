@@ -4,6 +4,7 @@ type InputTextProps = {
     label: string;
     type: string;
     callBack: (e: any) => void;
+    value: any;
     placeholder?: string;
 }
 
@@ -11,6 +12,7 @@ type InputTextareaProps = {
     children: ReactNode;
     label: string;
     callBack: (e: any) => void;
+    value: any;
     placeholder?: string;
 }
 
@@ -18,12 +20,14 @@ type InputDropwdownProps = {
     label: string;
     options: string[];
     callBack: (e: any) => void;
+    value: any;
 }
 
-export const InputText: React.FC<InputTextProps> = ({ label, type, callBack, placeholder=" "}) => {
+export const InputText: React.FC<InputTextProps> = ({ label, type, callBack, value, placeholder=" "}) => {
     return (
         <div className="relative w-full max-w-xl">
           <input
+          value={value}
             onChange={(e) => callBack(e.target.value)}
             className="peer transition-all px-6 py-3 w-full text-lg text-customGrey  white rounded-2xl border border-slate-300 outline-none select-all" type={type} placeholder={placeholder}/>
           <label className="z-2 tracking-wide text-customGrey pointer-events-none absolute left-5 inset-y-0 h-fit flex items-center select-none px-1  bg-white peer-focus:bg-white m-0 -translate-y-1/2 ">{label}</label>
@@ -31,11 +35,12 @@ export const InputText: React.FC<InputTextProps> = ({ label, type, callBack, pla
     )
 }
 
-export const InputDropdown: React.FC<InputDropwdownProps> = ({ label, options, callBack}) => {
+export const InputDropdown: React.FC<InputDropwdownProps> = ({ label, options, callBack, value}) => {
     let totalOptions = ["No item selected", ...options];
     return (
         <div className="relative w-full max-w-xl">
           <select
+            value={value}
             onChange={(e) => callBack(e.target.value)}
             className="peer transition-all px-6 py-4 w-full text-lg text-customGrey  white rounded-2xl border border-slate-300 outline-none select-all">
                 {
@@ -50,10 +55,11 @@ export const InputDropdown: React.FC<InputDropwdownProps> = ({ label, options, c
 }
 
 
-export const InputTextarea: React.FC<InputTextareaProps> = ({ children, label, callBack, placeholder=" "}) => {
+export const InputTextarea: React.FC<InputTextareaProps> = ({ children, label, callBack, value, placeholder=" "}) => {
     return (
         <div className="relative w-full max-w-xl">
           <textarea
+          value={value}
             onChange={(e) => callBack(e.target.value)}
             className="peer transition-all px-6 py-3 w-full text-lg text-customGrey  white rounded-2xl border border-slate-300 outline-none select-all" placeholder={placeholder} rows={4} cols={90}>{children}</textarea>
           <label className="z-2 tracking-wide text-customGrey pointer-events-none absolute left-5 inset-y-0 h-fit flex items-center select-none px-1  bg-white peer-focus:bg-white m-0 -translate-y-1/2 ">{label}</label>

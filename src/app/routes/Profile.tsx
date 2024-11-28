@@ -1,45 +1,81 @@
 import { ProfileIcon } from "@/components/image/Icon";
-import { Button, ButtonColors } from "@/components/interactive/Button";
-import { InputDropdown, InputText, InputTextarea } from "@/components/interactive/Input";
+import { Skill as SkillComponent } from "@/components/image/Skill";
 import { Text, TextType } from "@/components/typography/Text";
-import { useState } from "react";
+import { Profile } from "@/models";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getProfileByProfileKeyService } from "@/services";
+import { Loading } from "@/components/image/Loading";
 
-export const Profile: React.FC = () => {
-    const [displayName, setDisplayName] = useState<string>();
+export const UserProfile: React.FC = () => {
+  const {id} = useParams();
+    const [profile, setProfile] = useState<Profile>();
+    const [loading, setLoading] = useState<boolean>(false);
 
-  return (<main className="">
-    <div className="flex flex-col items-center mt-6">
-    <Text type={TextType.headerTwoBlack}>Profile</Text> 
-    <div className="my-3">
-        <ProfileIcon link={"https://media.istockphoto.com/id/1353379051/photo/portrait-of-beautiful-mature-african-woman-looking-at-camera-outdoor.jpg?s=612x612&w=0&k=20&c=87IkLpQc2INpv2sJRrH347-qVrNFmH2QM_da8J46y44="} />
+    useEffect(() => {
+      const retrieveProfileInformation = async () => {
+        setLoading(true);
+        if(id!== undefined) {
+          const profile = await getProfileByProfileKeyService(id);
+          if(profile !== null) {
+            setProfile(profile);
+            setLoading(false);
+
+          }
+        }
+
+
+      }
+      retrieveProfileInformation();
+    },[])
+  return (<main className="m-6">
+    {
+      loading ? (
+        <div className="flex justify-center items-center">
+          <Loading />
+        </div>
+      ): (
+<div className="flex flex-col ">
+    <div className="my-3 flex flex-col items-center gap-3">
+        <ProfileIcon link={profile?.profilePictureLink} />
+        <Text type={TextType.headerOneBlack}>{profile?.displayName}</Text>
     </div>
 
-<div className="flex flex-col gap-y-6 w-full items-center mt-5 mb-3">
-    <InputText type="text" label="Display Name" callBack={setDisplayName} />
-    <InputText type="text" label="Profession" callBack={setDisplayName} />
-    <InputText type="text" label="Current Company" callBack={setDisplayName} />
-    <InputDropdown options={["Mentee", "Mentor", "Both"]} label="Profile Type" callBack={setDisplayName} />
-    <InputTextarea label="Description" callBack={setDisplayName}> </InputTextarea>
+
+<div className="flex flex-col gap-y-6 mt-5 mb-3 p-6 shadow-lg bg-slate-100">
+    <Text type={TextType.bodyBlack}><span className="font-bold">Profession: </span> {profile?.profession}</Text>
+    <Text type={TextType.bodyBlack}><span className="font-bold">Current Company: </span> {profile?.currentCompany}</Text>
+    <Text type={TextType.bodyBlack}><span className="font-bold">Years of Experience: </span> {profile?.yearsOfExperience}</Text>
+    <Text type={TextType.bodyBlack}><span className="font-bold">Description: </span><br></br> {profile?.description}</Text>
 </div>
 
-<Text type={TextType.headerThreeBlack}>Links</Text>
 
-<div className="flex flex-col gap-y-6 w-full items-center mt-5 mb-3">
-    <InputText type="text" label="LinkedIn" callBack={setDisplayName} />
-    <InputText type="text" label="Profile Picture" callBack={setDisplayName} />
-    <InputText type="text" label="Portfolio" callBack={setDisplayName} />
-    <InputText type="text" label="Booking" callBack={setDisplayName} />
+<div className="flex flex-col gap-y-3 mt-5 mb-3 p-6 shadow-lg">
+<Text type={TextType.headerThreeBlack}><span className="font-bold">Links</span></Text>
+<Text type={TextType.bodyBlack}><span className="font-bold">LinkedIn: </span> <a href={profile?.linkedinLink}>{profile?.linkedinLink}</a> </Text>
+<Text type={TextType.bodyBlack}><span className="font-bold">Portfolio: </span> <a href={profile?.portfolioLink}>{profile?.portfolioLink}</a> </Text>
+<Text type={TextType.bodyBlack}><span className="font-bold">Booking: </span> <a href={profile?.bookingLink}>{profile?.bookingLink}</a> </Text>
 
 </div>
 
-<div className="flex justify-center my-5">
-              <Button callBack={() => console.log()} color={ButtonColors.purple}>
-                <Text type={TextType.bodyWhite} tailwindClass="font-bold">
-                  Save Profile
-                </Text>
-              </Button>
-            </div>
-    </div>
+<div className="flex flex-col gap-y-6 mt-5 mb-3 p-6 shadow-lg bg-slate-100">
+<Text type={TextType.headerThreeBlack}><span className="font-bold">Skills</span></Text>
+<div className="flex flex-wrap gap-y-3 gap-x-3">
+{
+  profile !== undefined ? (  profile.skills.map((item, key) => {
+    return <SkillComponent skill={item} key={key}/>
+  })) : (<></>)
+
+}
+</div>
+
+</div>
+
+</div>
+      )
+    }
+    
+
 
   </main>);
 };

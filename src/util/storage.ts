@@ -3,7 +3,7 @@ export const addUserKey = (userKey: string) => {
 }
 
 export const getUserKeyFromStorage = (): string => {
-    return JSON.stringify(localStorage.getItem("key"));
+    return JSON.stringify(localStorage.getItem("key")).replace('"', '').replace('"', '');
 }
 
 export const deleteExistingKey = () => {

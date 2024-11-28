@@ -3,7 +3,8 @@ import { ReactNode } from "react"
 export enum ButtonColors {
     purple,
     black,
-    white
+    white,
+    red
 }
 
 type ButtonProps = {
@@ -13,7 +14,7 @@ type ButtonProps = {
 }
 
 export const Button: React.FC<ButtonProps> = ( { children, color, callBack } ) => {
-    let tailwindClass = "rounded-full px-8 py-2.5 ";
+    let tailwindClass = "rounded-full px-8 py-2 hover:translate-y-[-3px] active:translate-y-0 hover:shadow-md";
 
     switch(color) {
         case ButtonColors.purple:
@@ -21,6 +22,9 @@ export const Button: React.FC<ButtonProps> = ( { children, color, callBack } ) =
             break;
         case ButtonColors.black:
             tailwindClass += " bg-customBlack hover:bg-customGrey";
+            break;
+        case ButtonColors.red:
+            tailwindClass += " bg-red-500 hover:bg-red-400";
             break;
         default:
             tailwindClass += "bg-white border border-black hover:bg-slate-200";

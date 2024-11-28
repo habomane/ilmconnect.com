@@ -13,13 +13,13 @@ export const AppLayout: React.FC = () => {
     if(userKey !== "null") {setIsLoggedIn(true); }
   }, []);
   return (
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col h-screen overflow-x-hidden">
         <Header/>
         {
           isLoggedIn ? (
             <div className="flex flex-grow">
             <Navigation/>
-            <div className="flex-grow overflow-scroll">
+            <div className="flex-grow ">
             <Outlet/>
             </div>
           </div>

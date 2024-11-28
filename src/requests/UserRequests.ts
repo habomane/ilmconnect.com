@@ -1,4 +1,4 @@
-const API_URL = "https://ilmconnect-ilmapi.onrender.com/user/";
+const API_URL = "http://localhost:8080/user/";
 
 export enum UserEndpoints  {
     getUserWithUserKey= API_URL,
